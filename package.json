@@ -4,7 +4,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx nodemon --watch 'src/**/*.ts' --ext '.ts' --exec 'npx ts-node' src/index.ts",
+    "dev": "npx nodemon --watch 'src/**/*.ts' --watch 'docs/swagger.yaml' --ext '.ts,.yaml' --exec 'npx ts-node' src/index.ts",
     "migrate:init": "npx prisma migrate dev --name init",
     "migrate:reset": "npx prisma db push --force-reset",
     "build": "tsc",
@@ -16,18 +16,29 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.7.0",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "jsonwebtoken": "^9.0.2",
     "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^13.0.1",
+    "koa2-swagger-ui": "^5.11.0",
+    "swagger-jsdoc": "^6.2.8",
     "ulid": "^3.0.0",
+    "yamljs": "^0.3.0",
     "zod": "^3.24.3",
+    "zod-to-json-schema": "^3.24.5",
     "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/koa": "^2.15.0",
     "@types/koa-bodyparser": "^4.3.12",
     "@types/koa-router": "^7.4.8",
     "@types/node": "^22.15.3",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/yamljs": "^0.2.34",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"

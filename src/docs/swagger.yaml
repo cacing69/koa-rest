@@ -1,0 +1,80 @@
+openapi: 3.0.0
+info:
+  title: KOA Rest Documentation
+  version: 1.0.0
+  description: RESTful API documentation
+
+servers:
+  - url: http://localhost:3000
+    description: Development server
+
+# paths:
+  # /auth/login:
+  #   post:
+  #     tags:
+  #       - Authentication
+  #     summary: Login user and generate JWT token
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             properties:
+  #               email:
+  #                 type: string
+  #               password:
+  #                 type: string
+  #             example:
+  #               email: "user@example.com"
+  #               password: "secret123"
+
+  #     responses:
+  #       '200':
+  #         description: Successful login
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/AuthResponse'
+
+  # /api/auth/me:
+  #   get:
+  #     tags:
+  #       - Authentication
+  #     summary: Get current user profile (Protected)
+  #     security:
+  #       - BearerAuth: []
+  #     responses:
+  #       '200':
+  #         description: User profile
+  #       '401':
+  #         description: Unauthorized
+
+# components:
+#   schemas:
+#     AuthResponse:
+#       type: object
+#       properties:
+#         success:
+#           type: boolean
+#         message:
+#           type: string
+#         data:
+#           type: object
+#           properties:
+#             user:
+#               type: object
+#               properties:
+#                 id:
+#                   type: string
+#                 name:
+#                   type: string
+#                 email:
+#                   type: string
+#             token:
+#               type: string
+securitySchemes:
+  BearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT

@@ -9,7 +9,8 @@ type ValidationErrorGroup = {
 
 export function validateMiddleware<T extends z.Schema>(schema: T) {
     return async (ctx: Context, next: () => Promise<void>) => {
-        const input = { body: ctx.request.body };
+        // Ubah jadi langsung parse body tanpa wrapping "body"
+        const input = ctx.request.body;
         const result = schema.safeParse(input);
 
         if (!result.success) {
@@ -17,20 +18,18 @@ export function validateMiddleware<T extends z.Schema>(schema: T) {
             const tempErrors: Record<string, string[]> = {};
 
             for (const issue of result.error.issues) {
-                const fieldPath = issue.path.join('.'); // e.g. body.name
-                const field = fieldPath.replace(/^body\./, ''); // jadi name saja
-
-                if (!tempErrors[field]) {
-                    tempErrors[field] = [];
+                const fieldPath = issue.path.join('.'); // contoh: "name", bukan "body.name"
+                if (!tempErrors[fieldPath]) {
+                    tempErrors[fieldPath] = [];
                 }
 
-                tempErrors[field].push(issue.message);
+                tempErrors[fieldPath].push(issue.message);
             }
 
             // Ubah Record ke Array<Group>
-            const formattedErrors = Object.entries(tempErrors).map(([field, message]) => ({
+            const formattedErrors = Object.entries(tempErrors).map(([field, messages]) => ({
                 field,
-                message
+                message: messages
             })) satisfies ValidationErrorGroup[];
 
             ctx.status = 422;
