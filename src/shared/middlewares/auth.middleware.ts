@@ -6,7 +6,7 @@ export async function authMiddleware(ctx: Context, next: Next) {
     const authHeader = ctx.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return errorResponse(ctx, null, 'Missing or invalid token', 401);
+        return errorResponse(ctx, null, 'Unauthorized : Missing bearer token', 401);
     }
 
     const token = authHeader.split(' ')[1];
@@ -20,6 +20,6 @@ export async function authMiddleware(ctx: Context, next: Next) {
         ctx.state.user = decoded;
         await next();
     } catch (e) {
-        return errorResponse(ctx, null,'Invalid or expired token', 401);
+        return errorResponse(ctx, null,'Unauthorized : Invalid or expired token', 401);
     }
 }
