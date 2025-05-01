@@ -53,17 +53,27 @@ authRouter.post('/token', validateMiddleware(authTokenValidation), handleAuthTok
  *   post:
  *     tags:
  *      - Authentication
- *     summary: Login user and generate JWT token
+ *     summary: Generate new JWT token
  */
 authRouter.post('/refresh', authMiddleware, handleAuthRefresh);
 
 /**
  * @openapi
- * /auth/refresh:
- *   post:
- *     tags:
- *      - Authentication
+ * /auth/check/{flag}:
+ *   get:
  *     summary: Login user and generate JWT token
+ *     tags:
+ *       - Authentication
+ *     parameters:
+ *       - in: path
+ *         name: flag
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: String flag check
+ *     responses:
+ *      200:
+ *          description: User profile
  */
 authRouter.get('/check/:flag', handleCheckParams);
 

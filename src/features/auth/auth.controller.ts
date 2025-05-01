@@ -50,8 +50,8 @@ export async function handleAuthRefresh(ctx: Context) {
 export const handleCheckParams = async (ctx: Context) => {
     const flag = ctx.params.flag;
 
-    if (!flag) {
-        return errorResponse(ctx, null, 'Missing params flag', 400);
+    if (!/^[A-Za-z]+$/.test(flag)) {
+        return errorResponse(ctx, null, 'Invalid params flag only alphabet allowed', 400);
     }
 
     successResponse(ctx, {

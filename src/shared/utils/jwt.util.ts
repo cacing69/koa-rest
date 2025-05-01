@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { env } from '../../configs/env';
+import { env } from '../../configs/env.config';
 
 /**
  * Generate JWT token

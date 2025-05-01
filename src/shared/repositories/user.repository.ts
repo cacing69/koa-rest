@@ -1,7 +1,6 @@
-
 import { PrismaClient } from '../../../generated/prisma/client';
-import bcrypt from 'bcryptjs';
 import { CreateUserRequest } from '../validations/user-create.validation';
+import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
