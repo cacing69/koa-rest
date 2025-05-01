@@ -4,7 +4,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "yarn test:unit && yarn test:e2e",
-    "dev": "npx nodemon --watch 'src/**/*.ts' --watch 'docs/swagger.yaml' --ext '.ts,.yaml' --exec 'npx ts-node' src/index.ts",
+    "dev": "nodemon --watch 'src/*/.ts' --watch 'docs/swagger.yaml' --ext ts,yaml --exec \"npx ts-node src/index.ts\"",
     "migrate:init": "npx prisma migrate dev --name init",
     "migrate:reset": "npx prisma db push --force-reset",
     "build": "tsc",
