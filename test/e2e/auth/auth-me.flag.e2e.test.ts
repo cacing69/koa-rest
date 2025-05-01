@@ -1,6 +1,6 @@
 import request from 'supertest';
+import { loginAndGetToken } from '../helpers/auth.helper';
 import app from '../../../src/app';
-import { loginAndGetToken } from '../../helpers/auth.helper';
 
 describe('Auth Login Endpoint E2E', () => {
     const baseRoute = '/auth/me';

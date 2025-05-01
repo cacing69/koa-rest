@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "yarn test:unit && yarn test:e2e",
     "dev": "npx nodemon --watch 'src/**/*.ts' --watch 'docs/swagger.yaml' --ext '.ts,.yaml' --exec 'npx ts-node' src/index.ts",
     "migrate:init": "npx prisma migrate dev --name init",
     "migrate:reset": "npx prisma db push --force-reset",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test:e2e": "jest test/e2e"
+    "test:e2e": "jest test/e2e",
+    "test:unit": "jest test/unit"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +18,7 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.7.0",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.5.0",
     "jsonwebtoken": "^9.0.2",
     "koa": "^3.0.0",
@@ -33,7 +34,7 @@
     "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^3.0.0",
     "@types/jest": "^29.5.14",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/koa": "^2.15.0",
