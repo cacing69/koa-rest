@@ -4,13 +4,14 @@
   "main": "index.ts",
   "scripts": {
     "test": "yarn test:unit && yarn test:e2e",
-    "dev": "nodemon --watch 'src/*/.ts' --watch 'docs/swagger.yaml' --ext ts,yaml --exec \"npx ts-node src/index.ts\"",
+    "dev": "npx nodemon",
     "migrate:init": "npx prisma migrate dev --name init",
     "migrate:reset": "npx prisma db push --force-reset",
     "build": "tsc",
     "start": "node dist/index.js",
     "test:e2e": "jest test/e2e",
-    "test:unit": "jest test/unit"
+    "test:unit": "jest test/unit",
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",

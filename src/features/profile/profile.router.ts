@@ -9,7 +9,7 @@ const authRouter = new Router({ prefix: '/auth' });
  *   get:
  *     summary: Check currrent user
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     tags:
  *       - Profile
  *     responses:
@@ -26,7 +26,7 @@ authRouter.get('/profile', authMiddleware, () => { });
  *   post:
  *     summary: Upload avatar
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     tags:
  *       - Profile
  *     responses:

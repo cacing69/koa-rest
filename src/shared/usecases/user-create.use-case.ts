@@ -1,7 +1,7 @@
 import { createUser, findUserByEmail } from '../repositories/user.repository';
-import { CreateUserRequest } from '../validations/user-create.validation';
+import { UserCreateValidationRequest } from '../validations/user-create.validation';
 
-export async function userCreateUseCase(user: CreateUserRequest) {
+export async function userCreateUseCase(user: UserCreateValidationRequest) {
     const existing = await findUserByEmail(user.email);
 
     if (existing) {

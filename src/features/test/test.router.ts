@@ -7,16 +7,17 @@ const testRouter = new Router({ prefix: "/test" });
  * @openapi
  * /test/public:
  *   get:
- *     summary: Check currrent user
+ *     security: []
+ *     summary: Testing public endpoint
  *     tags:
  *       - Test
  *     responses:
  *      200:
- *          description: User profile
+ *          description: Test
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/TestPublicResponse'
+ *                $ref: '#/components/responses/TestPublicResponse'
  *      401:
  *          description: Unauthorized
  */

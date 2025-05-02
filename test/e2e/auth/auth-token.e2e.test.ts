@@ -8,7 +8,7 @@ describe('Auth Login Endpoint E2E', () => {
         const response = await request(app.callback())
             .post(`${baseRoute}`)
             .send({
-                email: `ibnuul@gmail.com`,
+                email: `developer@email.com`,
                 password: `password^`
             });
 
@@ -20,7 +20,7 @@ describe('Auth Login Endpoint E2E', () => {
         const response = await request(app.callback())
             .post(`${baseRoute}`)
             .send({
-                email: `ibnuul@example.com`,
+                email: `developer@email.com`,
                 password: `secret`
             });
 

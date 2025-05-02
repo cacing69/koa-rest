@@ -12,7 +12,7 @@ const authRouter = new Router({ prefix: '/auth' });
  *   get:
  *     summary: Check currrent user
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     tags:
  *       - Authentication
  *     responses:
@@ -28,6 +28,7 @@ authRouter.get('/me', authMiddleware, handleAuthMe);
  * /auth/token:
  *   post:
  *     summary: Login user and generate JWT token
+ *     security: []
  *     tags:
  *       - Authentication
  *     requestBody:
@@ -35,14 +36,17 @@ authRouter.get('/me', authMiddleware, handleAuthMe);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AuthTokenValidation'
+ *             $ref: '#/components/requestBodies/AuthTokenValidation'
+ *         application/x-www-form-urlencoded:
+ *           schema:
+ *             $ref: '#/components/requestBodies/AuthTokenValidation'
  *     responses:
  *       200:
  *         description: Success login
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AuthTokenResponse'
+ *               $ref: '#/components/responses/AuthTokenResponse'
  */
 authRouter.post('/token', validateMiddleware(authTokenValidation), handleAuthToken);
 
@@ -51,6 +55,7 @@ authRouter.post('/token', validateMiddleware(authTokenValidation), handleAuthTok
  * @openapi
  * /auth/refresh:
  *   post:
+ *     security: []
  *     tags:
  *      - Authentication
  *     summary: Generate new JWT token
@@ -61,7 +66,8 @@ authRouter.post('/refresh', authMiddleware, handleAuthRefresh);
  * @openapi
  * /auth/check/{flag}:
  *   get:
- *     summary: Login user and generate JWT token
+ *     summary: Check flag user for testing purpose only
+ *     security: []
  *     tags:
  *       - Authentication
  *     parameters:

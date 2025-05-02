@@ -17,7 +17,7 @@ app.use(userRouter.routes()).use(userRouter.allowedMethods());
 app.use(authRouter.routes()).use(authRouter.allowedMethods());
 app.use(testRouter.routes()).use(testRouter.allowedMethods());
 
-// Set ke process.env agar Prisma bisa baca juga
-process.env.DATABASE_URL = DATABASE_URL;
+// Set ke process.env
+// process.env.DATABASE_URL = DATABASE_URL;
 
 export default app;

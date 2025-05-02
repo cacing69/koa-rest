@@ -10,10 +10,10 @@ servers:
 
 components:
   securitySchemes:
-    BearerAuth:
+    bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
 
 security:
-  - BearerAuth: []
+  - bearerAuth: []

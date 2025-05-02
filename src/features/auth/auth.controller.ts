@@ -1,14 +1,13 @@
+import { AuthTokenValidationRequest } from './../../shared/validations/auth-token.validation';
 
 import { Context } from 'koa';
-import { userCreateUseCase } from '../../shared/usecases/user-create.use-case';
 import { successResponse, errorResponse } from '../../shared/utils/response.util';
 import { authTokenUseCase } from '../../shared/usecases/auth-token.use-case';
-import { AuthLoginRequest } from '../../shared/validations/auth-token.validation';
 import { authRefreshUseCase } from '../../shared/usecases/auth-refresh.use-case';
 
 export async function handleAuthToken(ctx: Context) {
     try {
-        const auth = await authTokenUseCase(ctx.request.body as AuthLoginRequest)
+        const auth = await authTokenUseCase(ctx.request.body as AuthTokenValidationRequest)
         successResponse(ctx, auth, 'Auth successfully', 200);
     } catch (err: any) {
         errorResponse(ctx, null, err.message, 400);

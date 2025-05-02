@@ -16,6 +16,12 @@ const docsPath = readFileSync(
 const swaggerYamlPath = path.resolve(__dirname, '../../docs/swagger.yaml');
 const swaggerYAML = YAML.parse(fs.readFileSync(swaggerYamlPath, 'utf8'));
 
+const { components } = swaggerYAML;
+
+// console.log(openapiComponents);
+
+(openapiComponents as any).components.securitySchemes = swaggerYAML.components.securitySchemes;
+
 // Gabungkan semua spec
 const mergedSpec = {
     ...swaggerYAML,

@@ -1,10 +1,10 @@
 import { PrismaClient } from '../../../generated/prisma/client';
-import { CreateUserRequest } from '../validations/user-create.validation';
 import bcrypt from 'bcryptjs';
+import { UserCreateValidationRequest } from '../validations/user-create.validation';
 
 const prisma = new PrismaClient();
 
-export const createUser = async (user: CreateUserRequest) => {
+export const createUser = async (user: UserCreateValidationRequest) => {
 
     // Hash password sebelum simpan
     const hashedPassword = await bcrypt.hash(user.password, 10);

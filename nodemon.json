@@ -1,0 +1,8 @@
+{
+    "watch": [
+        "src/**/*",
+        "docs/swagger.yaml"
+    ],
+    "ext": "ts,yaml",
+    "exec": "npx ts-node src/index.ts"
+}
