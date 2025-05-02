@@ -7,6 +7,7 @@ import { successResponseZod } from '../responses/success-response.response';
 export const openapiComponents = {
     components: {
         schemas: {
+
             ErrorResponse: convertToOpenApiSchema(errorResponseZod),
             SuccessResponse: convertToOpenApiSchema(successResponseZod),
             AuthTokenValidation: convertToOpenApiSchema(authTokenValidation),
