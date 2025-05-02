@@ -50,5 +50,7 @@ export async function errorHandlerMiddleware(ctx: Context, next: Next) {
             success: false,
             error: err.message || 'Internal Server Error'
         };
+
+        ctx.app.emit('error', err, ctx);
     }
 }
