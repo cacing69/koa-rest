@@ -24,9 +24,24 @@ authRouter.get('/profile', authMiddleware, () => { });
  * @openapi
  * /profile/avatar:
  *   post:
- *     summary: Upload avatar
+ *     summary: Upload an Avatar
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *      content:
+ *        multipart/form-data:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              avatar:
+ *                type: string
+ *                format: binary
+ *                description: Gambar avatar pengguna
+ *            required:
+ *              - avatar
+ *        encoding:
+ *          avatar:
+ *              contentType: image/*
  *     tags:
  *       - Profile
  *     responses:

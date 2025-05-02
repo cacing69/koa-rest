@@ -1,16 +1,23 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
-import userRouter from "./features/user/user.router";
 import { errorHandlerMiddleware } from "./shared/middlewares/error-handler.middleware";
-import authRouter from "./features/auth/auth.router";
 import swaggerMiddleware from "./shared/middlewares/swagger.middleware";
-import { DATABASE_URL } from "./configs/env.config";
-import testRouter from "./features/test/test.router";
+import koaCors from 'koa2-cors';
+
+import authRouter from "./features/auth/auth.router";
+import testRouter from './features/test/test.router';
+import userRouter from "./features/user/user.router";
 
 const app = new Koa();
 
 app.use(errorHandlerMiddleware);
 app.use(bodyParser());
+// Mengonfigurasi middleware CORS
+app.use(koaCors({
+    origin: '*', // Izinkan semua origin (bisa disesuaikan sesuai kebutuhan)
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE'], // Metode yang diizinkan
+    allowHeaders: ['Content-Type', 'Authorization'], // Header yang diizinkan
+}));
 app.use(swaggerMiddleware);
 
 app.use(userRouter.routes()).use(userRouter.allowedMethods());

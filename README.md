@@ -77,3 +77,35 @@ yarn test:unit
 Buka `http://localhost:3000` atau jika ingin mengakses swaggernya bisa di akses pada `http://localhost:3000/docs`
 
 ## Hal-hal yang perlu diperhatikan
+
+```bash
+KOA-REST/
+├── generated/          # Folder hasil generate dari `npx prisma generate`
+├── node_modules/       # Dependencies
+├── prisma/             # Prisma setup
+│   ├── migrations/     # Migrations Prisma
+│   ├── seeders/        # Seeder data
+│   ├── migrate.ts      # Script migrasi
+│   └── schema.prisma   # Schema database
+├── src/                # Source code aplikasi
+│   ├── configs/        # Konfigurasi app
+│   ├── docs/           # Dokumentasi API (Swagger/OpenAPI)
+│   ├── features/       # Fitur-fitur utama
+│   │   ├── auth/       # Fitur otentikasi
+│   │   ├── profile/    # Fitur profile
+│   │   └── user/       # Fitur user
+│   ├── shared/         # Komponen cross-cutting concern
+│   ├── middlewares/    # Middleware global
+│   ├── repositories/   # Repository pattern
+│   ├── responses/      # Respon standar
+│   ├── types/          # Tipe data kustom
+│   ├── usecases/       # Use case pattern
+│   └── validations/    # Validasi input
+│   └── index.ts        # Poin entrypoint aplikasi
+├── test/               # Test file
+├── .env                # Variabel env
+├── .env.example        # Contoh variabel env
+├── jest.config.ts      # Konfigurasi testing
+├── package.json        # Dependency & script
+└── tsconfig.json       # Konfigurasi TypeScript
+```
