@@ -9,11 +9,12 @@ export function generateToken(payload: { id: string; email: string }) {
         {
             id: payload.id,
             email: payload.email,
-            iat: Math.floor(Date.now() / 1000),
-            exp: Math.floor(Date.now() / 1000) + 60 * 60 // expired dalam 1 jam
         },
         env.JWT_SECRET,
-        { algorithm: 'HS256' }
+        {
+            algorithm: 'HS256',
+            expiresIn: '7d', // 7 Hari
+        }
     );
 }
 
