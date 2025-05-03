@@ -77,8 +77,15 @@ yarn test:unit
 ### 6. Create Feature
 
 ```bash
-./create-feature.sh feature-name
+./script/create-feature.sh feature-name
+
+# Or
+
+yarn feat:create feature-name
+
 ```
+
+Nama feature harus menggunakan `kebab-case`
 
 Buka `http://localhost:3000` atau jika ingin mengakses swaggernya bisa di akses pada `http://localhost:3000/docs`
 

@@ -50,7 +50,6 @@ fi
 mkdir -p "$dir_target"
 
 # copy isi stubs ke module baru
-echo "Creating feature..."
 echo "----------------------------------------------------"
 yes | cp -rf "$dir_stubs/"* "$dir_target"
 
