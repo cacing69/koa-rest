@@ -1,14 +1,18 @@
 import Router from 'koa-router';
 import { authMiddleware } from '../../shared/middlewares/auth.middleware';
-import { handleList{PASCAL_NAME} } from './{FEATURE_NAME}.controller';
+import {
+    handleGetAll{PASCAL_NAME},
+    handleGet{PASCAL_NAME}ById,
+    handleUpdate{PASCAL_NAME}ById
+} from './{FEATURE_NAME}.controller';
 
-const authRouter = new Router({ prefix: '/{FEATURE_NAME}' });
+const {CAMEL_NAME}Router = new Router({ prefix: '/{FEATURE_NAME}' });
 
 /**
  * @openapi
  * /{FEATURE_NAME}:
  *   get:
- *     summary: List {NORMAL_NAME}
+ *     summary: Get All {NORMAL_NAME}
  *     security:
  *       - bearerAuth: []
  *     tags:
@@ -18,5 +22,57 @@ const authRouter = new Router({ prefix: '/{FEATURE_NAME}' });
  *          description: Success
  *      401:
  *          description: Unauthorized
+ *      403:
+ *          description: Forbidden
+ *      404:
+ *          description: Not Found
+ *      500:
+ *          description: Internal Server Error
  */
-authRouter.get('/{FEATURE_NAME}', authMiddleware, handleList{PASCAL_NAME});
+{CAMEL_NAME}Router.get('/{FEATURE_NAME}', authMiddleware, handleGetAll{PASCAL_NAME});
+
+/**
+ * @openapi
+ * /{FEATURE_NAME}/{id}:
+ *   get:
+ *     summary: Get {NORMAL_NAME} By ID
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - {NORMAL_NAME}
+ *     responses:
+ *      200:
+ *          description: Success
+ *      401:
+ *          description: Unauthorized
+ *      403:
+ *          description: Forbidden
+ *      404:
+ *          description: Not Found
+ *      500:
+ *          description: Internal Server Error
+ */
+{CAMEL_NAME}Router.get('/{FEATURE_NAME}/:id', authMiddleware, handleGet{PASCAL_NAME}ById);
+
+/**
+ * @openapi
+ * /{FEATURE_NAME}/{id}:
+ *   patch:
+ *     summary: Update {NORMAL_NAME} By ID
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - {NORMAL_NAME}
+ *     responses:
+ *      204:
+ *          description: No Content
+ *      401:
+ *          description: Unauthorized
+ *      403:
+ *          description: Forbidden
+ *      404:
+ *          description: Not Found
+ *      500:
+ *          description: Internal Server Error
+ */
+{CAMEL_NAME}Router.patch('/{FEATURE_NAME}/:id', authMiddleware, handleUpdate{PASCAL_NAME}ById);

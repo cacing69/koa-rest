@@ -92,6 +92,7 @@ fi
 awk -v replacement="$pascal_case" '{gsub(/\{PASCAL_NAME\}/, replacement); print}' "$feat_router" > temp_file && mv temp_file "$feat_router"
 awk -v replacement="$input_case" '{gsub(/\{FEATURE_NAME\}/, replacement); print}' "$feat_router" > temp_file && mv temp_file "$feat_router"
 awk -v replacement="$normal_case" '{gsub(/\{NORMAL_NAME\}/, replacement); print}' "$feat_router" > temp_file && mv temp_file "$feat_router"
+awk -v replacement="$camel_case" '{gsub(/\{CAMEL_NAME\}/, replacement); print}' "$feat_router" > temp_file && mv temp_file "$feat_router"
 
 # Creating response
 stub_response="$dir_target/responses/response.stub"
@@ -108,7 +109,7 @@ else
   exit 1
 fi
 
-# Replace content route
+# Replace content response
 awk -v replacement="$pascal_case" '{gsub(/\{PASCAL_NAME\}/, replacement); print}' "$feat_response" > temp_file && mv temp_file "$feat_response"
 
 exit 0

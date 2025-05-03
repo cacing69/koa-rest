@@ -1,4 +1,4 @@
-import { generateToken } from '../utils/jwt.util';
+import { generateToken } from '../../utils/jwt.util';
 
 export type AuthUser = {
     id: string;

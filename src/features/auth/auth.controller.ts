@@ -2,8 +2,8 @@ import { AuthTokenValidationRequest } from './../../shared/validations/auth-toke
 
 import { Context } from 'koa';
 import { successResponse, errorResponse } from '../../shared/utils/response.util';
-import { authTokenUseCase } from '../../shared/usecases/auth-token.use-case';
-import { authRefreshUseCase } from '../../shared/usecases/auth-refresh.use-case';
+import { authTokenUseCase } from '../../shared/usecases/auth/auth-token.use-case';
+import { authRefreshUseCase } from '../../shared/usecases/auth/auth-refresh.use-case';
 
 export async function handleAuthToken(ctx: Context) {
     try {

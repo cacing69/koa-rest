@@ -1,6 +1,6 @@
-import { findUserByEmail, verifyPassword } from '../repositories/user.repository';
-import { generateToken } from '../utils/jwt.util';
-import { AuthTokenValidationRequest } from '../validations/auth-token.validation';
+import { findUserByEmail, verifyPassword } from '../../repositories/user.repository';
+import { generateToken } from '../../utils/jwt.util';
+import { AuthTokenValidationRequest } from '../../validations/auth-token.validation';
 
 export type AuthLoginResponse = {
     user: any,
