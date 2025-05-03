@@ -74,6 +74,12 @@ yarn test:e2e
 yarn test:unit
 ```
 
+### 6. Create Feature
+
+```bash
+./create-feature.sh feature-name
+```
+
 Buka `http://localhost:3000` atau jika ingin mengakses swaggernya bisa di akses pada `http://localhost:3000/docs`
 
 ## Hal-hal yang perlu diperhatikan

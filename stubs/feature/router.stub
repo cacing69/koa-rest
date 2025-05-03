@@ -1,0 +1,22 @@
+import Router from 'koa-router';
+import { authMiddleware } from '../../shared/middlewares/auth.middleware';
+import { handleList{PASCAL_NAME} } from './{FEATURE_NAME}.controller';
+
+const authRouter = new Router({ prefix: '/{FEATURE_NAME}' });
+
+/**
+ * @openapi
+ * /{FEATURE_NAME}:
+ *   get:
+ *     summary: List {NORMAL_NAME}
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - {NORMAL_NAME}
+ *     responses:
+ *      200:
+ *          description: Success
+ *      401:
+ *          description: Unauthorized
+ */
+authRouter.get('/{FEATURE_NAME}', authMiddleware, handleList{PASCAL_NAME});

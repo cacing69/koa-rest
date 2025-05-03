@@ -1,0 +1,10 @@
+import { Context } from 'koa';
+import { successResponse, errorResponse } from '../../shared/utils/response.util';
+
+export async function handleList{PASCAL_NAME}(ctx: Context) {
+    try {
+        successResponse(ctx, null, 'List {NORMAL_NAME}', 200);
+    } catch (err: any) {
+        errorResponse(ctx, null, err.message, 400);
+    }
+}
