@@ -10,4 +10,4 @@ export const userCreateValidation = z.object(
     }
 ).strict();
 
-export type UserCreateValidationRequest = z.infer<typeof userCreateValidation>;
+export type UserCreateValidation = z.infer<typeof userCreateValidation>;

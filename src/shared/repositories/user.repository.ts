@@ -1,6 +1,7 @@
 import { PrismaClient } from '../prisma/client';
 import bcrypt from 'bcryptjs';
-import { UserCreateValidationRequest } from '../validations/user-create.validation';
+import { UserCreateValidation } from '../validations/user-create.validation';
+import { UserUpdateValidation } from '../validations/user-update.validation';
 
 const prisma = new PrismaClient();
 
@@ -12,17 +13,17 @@ export const getUserById = (id: string) => {
     return prisma.user.findUnique({ where: { id } });
 }
 
-export const createUser = async (user: UserCreateValidationRequest) => {
-    const hashedPassword = await hashPassword(user.password);
+export const createUser = async (data: UserCreateValidation) => {
+    const hashedPassword = await hashPassword(data.password);
     return prisma.user.create({
         data: {
-            ...user,
+            ...data,
             password: hashedPassword
         }
     });
 };
 
-export const updateUser = async (id: string, data: Partial<{ firstName: string; email: string, password: string }>) => {
+export const updateUser = async (id: string, data: UserUpdateValidation) => {
     const updatedData: any = { ...data, updatedAt: new Date() };
 
     if (data.password) {
