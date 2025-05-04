@@ -5,4 +5,4 @@ export const authTokenValidation = z.object({
     password: z.string().min(6)
 }).strict()
 
-export type AuthTokenValidationRequest = z.infer<typeof authTokenValidation>;
+export type AuthTokenValidation = z.infer<typeof authTokenValidation>;

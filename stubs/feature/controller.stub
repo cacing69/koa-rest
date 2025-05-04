@@ -1,7 +1,7 @@
 import { Context } from 'koa';
 import { successResponse, errorResponse } from '../../shared/utils/response.util';
 
-export async function handleGetAll{PASCAL_NAME}(ctx: Context) {
+export async function handlePaginate{PASCAL_NAME}(ctx: Context) {
     try {
         successResponse(ctx, null, 'List {NORMAL_NAME}', 200);
     } catch (err: any) {

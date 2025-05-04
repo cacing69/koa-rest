@@ -30,7 +30,7 @@ const {CAMEL_NAME}Router = new Router({ prefix: '/{FEATURE_NAME}' });
  *      500:
  *        $ref: '#/components/responses/InternalError'
  */
-{CAMEL_NAME}Router.get('/{FEATURE_NAME}', authMiddleware, handleGetAll{PASCAL_NAME});
+{CAMEL_NAME}Router.get('/{FEATURE_NAME}', authMiddleware, handlePaginate{PASCAL_NAME});
 
 /**
  * @openapi

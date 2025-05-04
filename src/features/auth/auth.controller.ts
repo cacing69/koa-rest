@@ -1,4 +1,4 @@
-import { AuthTokenValidationRequest } from './../../shared/validations/auth-token.validation';
+import { AuthTokenValidation } from './../../shared/validations/auth-token.validation';
 
 import { Context } from 'koa';
 import { successResponse, errorResponse } from '../../shared/utils/response.util';
@@ -7,7 +7,7 @@ import { authRefreshUseCase } from '../../shared/usecases/auth/auth-refresh.use-
 
 export async function handleAuthToken(ctx: Context) {
     try {
-        const auth = await authTokenUseCase(ctx.request.body as AuthTokenValidationRequest)
+        const auth = await authTokenUseCase(ctx.request.body as AuthTokenValidation)
         successResponse(ctx, auth, 'Auth successfully', 200);
     } catch (err: any) {
         errorResponse(ctx, null, err.message, 400);

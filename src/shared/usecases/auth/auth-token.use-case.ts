@@ -1,6 +1,6 @@
 import { findUserByEmail, verifyPassword } from '../../repositories/user.repository';
 import { generateToken } from '../../utils/jwt.util';
-import { AuthTokenValidationRequest } from '../../validations/auth-token.validation';
+import { AuthTokenValidation } from '../../validations/auth-token.validation';
 
 export type AuthLoginResponse = {
     user: any,
@@ -8,7 +8,7 @@ export type AuthLoginResponse = {
 };
 
 export const authTokenUseCase = async (
-    input: AuthTokenValidationRequest
+    input: AuthTokenValidation
 ): Promise<AuthLoginResponse> => {
     // Step 1: Cari user berdasarkan email
     const user = await findUserByEmail(input.email);

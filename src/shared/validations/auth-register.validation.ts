@@ -9,4 +9,4 @@ export const authRegisterValidation = z.object({
     passwordConfirmation: z.string().min(6),
 }).strict()
 
-export type AuthRegisterRequest = z.infer<typeof authRegisterValidation>;
+export type AuthRegisterValidation = z.infer<typeof authRegisterValidation>;
