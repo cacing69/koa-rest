@@ -10,6 +10,8 @@ export const openapiComponents = {
     components: {
         schemas: {
         },
+        securitySchemes: {
+        },
         parameters: {
         },
         responses: {

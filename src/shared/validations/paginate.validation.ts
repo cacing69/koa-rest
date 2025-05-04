@@ -12,4 +12,4 @@ export const paginateValidation = z.object({
         .default('10'),
 });
 
-export type PaginateQuery = z.infer<typeof paginateValidation>;
+export type PaginateValidation = z.infer<typeof paginateValidation>;

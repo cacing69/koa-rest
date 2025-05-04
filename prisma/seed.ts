@@ -1,4 +1,4 @@
-import { PrismaClient } from '../generated/prisma/client';
+import { PrismaClient } from '../src/shared/prisma/client';
 import { seedUsers } from './seeders/user.seeder';
 const prisma = new PrismaClient();
 

@@ -14,7 +14,7 @@
     "start": "node dist/index.js",
     "test:e2e": "jest test/e2e",
     "test:unit": "jest test/unit",
-    "seed": "ts-node prisma/seed.ts",
+    "db:seed": "ts-node prisma/seed.ts",
     "feat:create": "./script/create-feature.sh"
   },
   "keywords": [],

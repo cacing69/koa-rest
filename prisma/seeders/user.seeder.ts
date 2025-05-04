@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../generated/prisma/client';
+import { PrismaClient } from '../../src/shared/prisma/client';
 const prisma = new PrismaClient();
 
 export async function seedUsers() {

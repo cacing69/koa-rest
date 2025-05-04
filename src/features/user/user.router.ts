@@ -1,6 +1,6 @@
 import Router from 'koa-router';
 import { validateMiddleware } from '../../shared/middlewares/validate.middleware';
-import { handleCreateUser } from './user.controller';
+import { handleCreateUser, handlePaginateUser } from './user.controller';
 import { userCreateValidation } from '../../shared/validations/user-create.validation';
 import { hasPermission, hasRole } from '../../shared/middlewares/acl.middleware';
 import { authMiddleware } from '../../shared/middlewares/auth.middleware';
@@ -10,9 +10,25 @@ const userRouter = new Router({ prefix: '/user' });
 /**
  * @openapi
  * /user:
+ *   get:
+ *     summary: Paginate User
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - User
+ *     responses:
+ *       200:
+ *         description: Created
+ */
+userRouter.post('/', authMiddleware, validateMiddleware(userCreateValidation), handlePaginateUser);
+
+/**
+ * @openapi
+ * /user:
  *   post:
  *     summary: Create new User
- *     security: []
+ *     security:
+ *       - bearerAuth: []
  *     tags:
  *       - User
  *     requestBody:
@@ -28,6 +44,6 @@ const userRouter = new Router({ prefix: '/user' });
  *       201:
  *         description: Created
  */
-userRouter.post('/', authMiddleware, validateMiddleware(userCreateValidation), hasPermission(['delete-test']), handleCreateUser);
+userRouter.post('/', authMiddleware, validateMiddleware(userCreateValidation), handleCreateUser);
 
 export default userRouter;

@@ -13,6 +13,10 @@ const swaggerYAML = YAML.parse(fs.readFileSync(swaggerYamlPath, 'utf8'));
 
 // Gabungkan komponen dari file YAML dan utilitas (misal tambahan securitySchemes)
 const mergedComponents = {
+    securitySchemes: {
+        ...swaggerYAML.components?.securitySchemes,
+        ...openapiComponents.components?.securitySchemes,
+    },
     responses: {
         ...swaggerYAML.components?.responses,
         ...openapiComponents.components?.responses,
@@ -37,13 +41,13 @@ const mergedSpec = {
     components: mergedComponents,
 };
 
-console.log(mergedComponents)
 
 // Konfigurasi swagger-jsdoc
 const options = {
     swaggerDefinition: mergedSpec,
     apis: ['./src/**/*.router.ts'], // include komentar openapi di router
 };
+
 
 // Hasil akhir spesifikasi Swagger
 const swaggerSpec = swaggerJSDoc(options);
