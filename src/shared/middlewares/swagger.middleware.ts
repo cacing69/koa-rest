@@ -13,8 +13,22 @@ const swaggerYAML = YAML.parse(fs.readFileSync(swaggerYamlPath, 'utf8'));
 
 // Gabungkan komponen dari file YAML dan utilitas (misal tambahan securitySchemes)
 const mergedComponents = {
-    ...swaggerYAML.components,
-    ...openapiComponents.components,
+    responses: {
+        ...swaggerYAML.components?.responses,
+        ...openapiComponents.components?.responses,
+    },
+    schemas: {
+        ...swaggerYAML.components?.schemas,
+        ...openapiComponents.components?.schemas,
+    },
+    requestBodies: {
+        ...swaggerYAML.components?.requestBodies,
+        ...openapiComponents.components?.requestBodies,
+    },
+    parameters: {
+        ...swaggerYAML.components?.parameters,
+        ...openapiComponents.components?.parameters,
+    },
 };
 
 // Gabungkan keseluruhan spesifikasi
@@ -22,6 +36,8 @@ const mergedSpec = {
     ...swaggerYAML,
     components: mergedComponents,
 };
+
+console.log(mergedComponents)
 
 // Konfigurasi swagger-jsdoc
 const options = {

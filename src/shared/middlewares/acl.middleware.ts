@@ -65,7 +65,7 @@ export function hasPermission(permissions: string[]) {
                 ctx.status = 403;
                 ctx.body = {
                     error: 'Forbidden',
-                    details: `Missing required permissions: ${permissions}`
+                    details: [`Missing required permissions: ${permissions}`]
                 };
 
                 return;

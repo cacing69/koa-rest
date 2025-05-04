@@ -1,6 +1,6 @@
 
 import { Context } from 'koa';
-import { userCreateUseCase } from '../../shared/usecases/user-create.use-case';
+import { userCreateUseCase } from '../../shared/usecases/user/user-create.use-case';
 import { successResponse, errorResponse } from '../../shared/utils/response.util';
 import { UserCreateValidationRequest } from '../../shared/validations/user-create.validation';
 

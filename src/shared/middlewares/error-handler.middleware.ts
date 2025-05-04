@@ -9,7 +9,6 @@ export async function errorHandlerMiddleware(ctx: Context, next: Next) {
         if (ctx.status === 404) {
             ctx.status = 404;
             ctx.body = {
-                success: false,
                 error: 'Not found',
                 details: {
                     path: ctx.url
@@ -21,7 +20,6 @@ export async function errorHandlerMiddleware(ctx: Context, next: Next) {
             // Jika tidak ada body & method tidak diizinkan
             ctx.status = 405;
             ctx.body = {
-                success: false,
                 error: 'Method Not Allowed',
                 details: {
                     allowedMethods: ctx.response.header?.allow?.split(', ') || []
@@ -32,7 +30,6 @@ export async function errorHandlerMiddleware(ctx: Context, next: Next) {
         if (err.status === 400 && err.expose && err.message.includes('invalid JSON')) {
             ctx.status = 400;
             ctx.body = {
-                success: false,
                 error: 'Invalid JSON payload',
                 details: [
                     {
@@ -47,8 +44,8 @@ export async function errorHandlerMiddleware(ctx: Context, next: Next) {
         // Handle error lainnya
         ctx.status = err.statusCode || err.status || 500;
         ctx.body = {
-            success: false,
-            error: err.message || 'Internal Server Error'
+            error: err.message || 'Internal Server Error',
+            details: JSON.stringify(err)
         };
 
         ctx.app.emit('error', err, ctx);

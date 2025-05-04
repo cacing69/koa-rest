@@ -34,7 +34,6 @@ export function validateMiddleware<T extends z.Schema>(schema: T) {
 
             ctx.status = 422;
             ctx.body = {
-                success: false,
                 error: 'Validation failed',
                 details: formattedErrors
             };
