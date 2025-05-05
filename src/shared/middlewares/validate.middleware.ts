@@ -10,7 +10,11 @@ type ValidationErrorGroup = {
 export function validateMiddleware<T extends z.Schema>(schema: T) {
     return async (ctx: Context, next: () => Promise<void>) => {
         // Ubah jadi langsung parse body tanpa wrapping "body"
-        const input = ctx.request.body;
+
+        console.log(ctx.method)
+
+        const input = ctx.method == "GET" ? ctx.request.query : ctx.method == "POST" ? ctx.request.body : {};
+
         const result = schema.safeParse(input);
 
         if (!result.success) {

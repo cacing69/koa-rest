@@ -4,6 +4,7 @@ import { handleCreateUser, handlePaginateUser } from './user.controller';
 import { userCreateValidation } from '../../shared/validations/user-create.validation';
 import { hasPermission, hasRole } from '../../shared/middlewares/acl.middleware';
 import { authMiddleware } from '../../shared/middlewares/auth.middleware';
+import { paginateValidation } from '../../shared/validations/paginate.validation';
 
 const userRouter = new Router({ prefix: '/user' });
 
@@ -20,7 +21,7 @@ const userRouter = new Router({ prefix: '/user' });
  *       200:
  *         description: Created
  */
-userRouter.post('/', authMiddleware, validateMiddleware(userCreateValidation), handlePaginateUser);
+userRouter.get('/', authMiddleware, validateMiddleware(paginateValidation), handlePaginateUser);
 
 /**
  * @openapi
