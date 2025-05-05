@@ -13,8 +13,6 @@ export function validateQueryParams<T extends z.Schema>(schema: T) {
 
         const input = ctx.request.query;
 
-        console.log(input)
-
         const result = schema.safeParse(input);
 
         if (!result.success) {

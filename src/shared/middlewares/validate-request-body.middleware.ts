@@ -13,8 +13,6 @@ export function validateRequestBody<T extends z.Schema>(schema: T) {
 
         const input = ctx.request.body;
 
-        console.log(input)
-
         const result = schema.safeParse(input);
 
         if (!result.success) {

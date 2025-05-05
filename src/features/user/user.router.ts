@@ -49,3 +49,13 @@ userRouter.get('/', auth, validateQueryParams(paginateQuery), validateQueryParam
 userRouter.post('/', auth, validateRequestBody(userCreateValidation), handleCreateUser);
 
 export default userRouter;
+
+// permission
+// 1. create-user
+
+// role
+// 1. admin
+
+// role-permission
+// id, role_id, permission_id
+// 1, 1, 1

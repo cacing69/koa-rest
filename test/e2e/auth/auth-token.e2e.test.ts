@@ -25,6 +25,6 @@ describe('Auth Login Endpoint E2E', () => {
             });
 
         expect(response.status).toBe(400);
-        expect(response.body.message).toBe("Email or password is invalid");
+        expect(response.body.error).toBe("Email or password is invalid");
     });
 });

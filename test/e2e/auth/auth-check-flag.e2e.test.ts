@@ -15,16 +15,17 @@ describe('Check Flag Endpoint E2E', () => {
         const response = await request(app.callback()).get(`${baseRoute}/${flag}`);
 
         expect(response.status).toBe(400);
-        expect(response.body.message).toBe('Invalid params flag only alphabet allowed');
+        expect(response.body.error).toBe('Invalid params flag only alphabet allowed');
     });
 
     it(`GET ${baseRoute} - Success check flag`, async () => {
         const flag = 'valid';
         const response = await request(app.callback()).get(`${baseRoute}/${flag}`);
-        const { data, message } = response.body
+        const { data, error } = response.body
+
+        console.log(data)
 
         expect(response.status).toBe(200);
         expect(data.flag).toBe(flag);
-        expect(message).toBe("Check Params");
     });
 });
