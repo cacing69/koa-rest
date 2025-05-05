@@ -4,7 +4,7 @@ import { env } from '../../configs/env.config';
 /**
  * Generate JWT token
  */
-export function generateToken(payload: { id: string; email: string }) {
+export  const generateToken = (payload: { id: string; email: string }) => {
     return jwt.sign(
         {
             id: payload.id,
@@ -21,6 +21,6 @@ export function generateToken(payload: { id: string; email: string }) {
 /**
  * Verify dan decode JWT token
  */
-export function verifyToken(token: string) {
+export const verifyToken = (token: string) => {
     return jwt.verify(token, env.JWT_SECRET);
 }

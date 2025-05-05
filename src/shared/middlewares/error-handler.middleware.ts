@@ -1,7 +1,7 @@
 // middleware/error-handler.middleware.ts
 import { Context, Next } from 'koa';
 
-export async function errorHandlerMiddleware(ctx: Context, next: Next) {
+export const errorHandlerMiddleware = async (ctx: Context, next: Next) => {
     try {
         await next();
 
@@ -14,7 +14,6 @@ export async function errorHandlerMiddleware(ctx: Context, next: Next) {
                     path: ctx.url
                 }
             };
-
 
         } else if (!ctx.body && ctx.status === 405) {
             // Jika tidak ada body & method tidak diizinkan

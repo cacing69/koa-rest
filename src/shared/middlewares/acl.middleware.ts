@@ -22,7 +22,7 @@ export const userPermissionsTable = {
     ]
 };
 
-export function hasRole(roles: string[]) {
+export const hasRole = (roles: string[]) => {
     return async (ctx: Context, next: Next) => {
 
         try {
@@ -48,7 +48,7 @@ export function hasRole(roles: string[]) {
     };
 }
 
-export function hasPermission(permissions: string[]) {
+export const hasPermission = (permissions: string[]) => {
     return async (ctx: Context, next: Next) => {
 
         try {

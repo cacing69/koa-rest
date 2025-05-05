@@ -4,7 +4,7 @@ import {
   errorResponse,
 } from "../../shared/utils/response.util";
 
-export async function handlePublic(ctx: Context) {
+export const handlePublic = (ctx: Context) => {
   try {
     successResponse(
       ctx,

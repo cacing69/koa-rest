@@ -7,7 +7,7 @@ import { userPaginateUseCase } from '../../shared/usecases/user/user-paginate.us
 import { PaginateQuery } from '../../shared/validations/query/paginate.query';
 import { UserFilterQuery } from '../../shared/validations/query/user-filter.query';
 
-export async function handlePaginateUser(ctx: Context) {
+export const handlePaginateUser = async (ctx: Context) => {
     try {
         const { paginate, meta } = await userPaginateUseCase(
             ctx.request.query as unknown as PaginateQuery,
@@ -24,7 +24,7 @@ export async function handlePaginateUser(ctx: Context) {
     }
 }
 
-export async function handleCreateUser(ctx: Context) {
+export const handleCreateUser = async (ctx: Context) => {
     try {
         const user = await userCreateUseCase(ctx.request.body as UserCreateValidation);
         successResponse(ctx, null, 'User created successfully', 201);

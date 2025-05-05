@@ -5,7 +5,7 @@ import { successResponse, errorResponse } from '../../shared/utils/response.util
 import { authTokenUseCase } from '../../shared/usecases/auth/auth-token.use-case';
 import { authRefreshUseCase } from '../../shared/usecases/auth/auth-refresh.use-case';
 
-export async function handleAuthToken(ctx: Context) {
+export const handleAuthToken = async (ctx: Context) => {
     try {
         const auth = await authTokenUseCase(ctx.request.body as AuthTokenValidation)
         successResponse(ctx, auth, 'Auth successfully', 200);
@@ -14,7 +14,7 @@ export async function handleAuthToken(ctx: Context) {
     }
 }
 
-export async function handleAuthMe(ctx: Context) {
+export const handleAuthMe = async (ctx: Context) => {
     try {
 
         const { id, email } = ctx.state.user;
@@ -27,7 +27,7 @@ export async function handleAuthMe(ctx: Context) {
     }
 }
 
-export async function handleAuthRefresh(ctx: Context) {
+export const handleAuthRefresh = async (ctx: Context) => {
         try {
             const user = ctx.state.user; // Harus sudah diattach di middleware auth
 

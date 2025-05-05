@@ -6,9 +6,7 @@ export const errorResponseZod = z.object({
 });
 
 /**
-
  422 : Response Example
-
  {
     "success": false,
         "error": "Validation failed",
