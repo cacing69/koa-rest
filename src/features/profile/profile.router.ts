@@ -1,5 +1,5 @@
 import Router from 'koa-router';
-import { authMiddleware } from '../../shared/middlewares/auth.middleware';
+import { auth } from '../../shared/middlewares/auth.middleware';
 
 const authRouter = new Router({ prefix: '/auth' });
 
@@ -18,7 +18,7 @@ const authRouter = new Router({ prefix: '/auth' });
  *      401:
  *          description: Unauthorized
  */
-authRouter.get('/profile', authMiddleware, () => { });
+authRouter.get('/profile', auth, () => { });
 
 /**
  * @openapi
@@ -50,6 +50,6 @@ authRouter.get('/profile', authMiddleware, () => { });
  *      401:
  *          description: Unauthorized
  */
-authRouter.post('/profile/avatar', authMiddleware, () => { });
+authRouter.post('/profile/avatar', auth, () => { });
 
 export default authRouter;

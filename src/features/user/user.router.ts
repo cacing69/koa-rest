@@ -1,10 +1,11 @@
 import Router from 'koa-router';
-import { validateMiddleware } from '../../shared/middlewares/validate.middleware';
 import { handleCreateUser, handlePaginateUser } from './user.controller';
 import { userCreateValidation } from '../../shared/validations/user-create.validation';
-import { hasPermission, hasRole } from '../../shared/middlewares/acl.middleware';
-import { authMiddleware } from '../../shared/middlewares/auth.middleware';
-import { paginateValidation } from '../../shared/validations/paginate.validation';
+import { auth } from '../../shared/middlewares/auth.middleware';
+import { paginateQuery } from '../../shared/validations/query/paginate.query';
+import { userFilterQuery } from '../../shared/validations/query/user-filter.query';
+import { validateQueryParams } from '../../shared/middlewares/validate-query-params.middleware';
+import { validateRequestBody } from '../../shared/middlewares/validate-request-body.middleware';
 
 const userRouter = new Router({ prefix: '/user' });
 
@@ -21,7 +22,7 @@ const userRouter = new Router({ prefix: '/user' });
  *       200:
  *         description: Created
  */
-userRouter.get('/', authMiddleware, validateMiddleware(paginateValidation), handlePaginateUser);
+userRouter.get('/', auth, validateQueryParams(paginateQuery), validateQueryParams(userFilterQuery), handlePaginateUser);
 
 /**
  * @openapi
@@ -45,6 +46,6 @@ userRouter.get('/', authMiddleware, validateMiddleware(paginateValidation), hand
  *       201:
  *         description: Created
  */
-userRouter.post('/', authMiddleware, validateMiddleware(userCreateValidation), handleCreateUser);
+userRouter.post('/', auth, validateRequestBody(userCreateValidation), handleCreateUser);
 
 export default userRouter;

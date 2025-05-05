@@ -2,7 +2,7 @@ import { Context, Next } from 'koa';
 import { verifyToken } from '../utils/jwt.util';
 import { errorResponse } from '../utils/response.util';
 
-export async function authMiddleware(ctx: Context, next: Next) {
+export async function auth(ctx: Context, next: Next) {
     const authHeader = ctx.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {

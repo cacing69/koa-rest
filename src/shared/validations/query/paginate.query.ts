@@ -1,7 +1,8 @@
 import { z } from 'zod';
 
-export const paginateValidation = z.object({
+export const paginateQuery = z.object({
     cursor: z.string().optional(),
+    search: z.string().regex(/^[a-zA-Z0-9\s\.\,\:]+/).optional(),
     limit: z
         .string()
         .transform((val) => parseInt(val))
@@ -12,4 +13,4 @@ export const paginateValidation = z.object({
         .default('10'),
 });
 
-export type PaginateValidation = z.infer<typeof paginateValidation>;
+export type PaginateQuery = z.infer<typeof paginateQuery>;

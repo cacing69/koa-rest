@@ -7,13 +7,13 @@ type ValidationErrorGroup = {
     message: string[];
 };
 
-export function validateMiddleware<T extends z.Schema>(schema: T) {
+export function validateQueryParams<T extends z.Schema>(schema: T) {
     return async (ctx: Context, next: () => Promise<void>) => {
         // Ubah jadi langsung parse body tanpa wrapping "body"
 
-        console.log(ctx.method)
+        const input = ctx.request.query;
 
-        const input = ctx.method == "GET" ? ctx.request.query : ctx.method == "POST" ? ctx.request.body : {};
+        console.log(input)
 
         const result = schema.safeParse(input);
 
@@ -38,7 +38,7 @@ export function validateMiddleware<T extends z.Schema>(schema: T) {
 
             ctx.status = 422;
             ctx.body = {
-                error: 'Validation failed',
+                error: 'Invalid query params',
                 details: formattedErrors
             };
 

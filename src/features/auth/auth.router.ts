@@ -1,8 +1,8 @@
 import Router from 'koa-router';
-import { validateMiddleware } from '../../shared/middlewares/validate.middleware';
 import { handleAuthToken, handleAuthMe, handleAuthRefresh, handleCheckParams } from './auth.controller';
-import { authMiddleware } from '../../shared/middlewares/auth.middleware';
+import { auth } from '../../shared/middlewares/auth.middleware';
 import { authTokenValidation } from '../../shared/validations/auth-token.validation';
+import { validateRequestBody } from '../../shared/middlewares/validate-request-body.middleware';
 
 const authRouter = new Router({ prefix: '/auth' });
 
@@ -21,7 +21,7 @@ const authRouter = new Router({ prefix: '/auth' });
  *      401:
  *          description: Unauthorized
  */
-authRouter.get('/me', authMiddleware, handleAuthMe);
+authRouter.get('/me', auth, handleAuthMe);
 
 /**
  * @openapi
@@ -48,7 +48,7 @@ authRouter.get('/me', authMiddleware, handleAuthMe);
  *             schema:
  *               $ref: '#/components/responses/AuthTokenResponse'
  */
-authRouter.post('/token', validateMiddleware(authTokenValidation), handleAuthToken);
+authRouter.post('/token', validateRequestBody(authTokenValidation), handleAuthToken);
 
 
 /**
@@ -60,7 +60,7 @@ authRouter.post('/token', validateMiddleware(authTokenValidation), handleAuthTok
  *      - Authentication
  *     summary: Generate new JWT token
  */
-authRouter.post('/refresh', authMiddleware, handleAuthRefresh);
+authRouter.post('/refresh', auth, handleAuthRefresh);
 
 /**
  * @openapi

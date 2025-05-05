@@ -2,24 +2,74 @@ import { PrismaClient } from '../prisma/client';
 import bcrypt from 'bcryptjs';
 import { UserCreateValidation } from '../validations/user-create.validation';
 import { UserUpdateValidation } from '../validations/user-update.validation';
-import { PaginateValidation } from '../validations/paginate.validation';
+import { PaginateQuery } from '../validations/query/paginate.query';
+import { UserFilterQuery } from '../validations/query/user-filter.query';
 
-const prisma = new PrismaClient();
+const isProduction = process.env.NODE_ENV === 'production';
 
-export const paginateUser = async (paginate: PaginateValidation) => {
-    const results =  await prisma.user.findMany({
-        take: parseInt(`${paginate.limit}`),
-        skip: paginate.cursor ? 1 : 0,
-        cursor: paginate.cursor ? { id: paginate.cursor as string } : undefined,
+const prisma = new PrismaClient({
+    log: isProduction
+        ? []
+        : [{ level: 'query', emit: 'event' }]
+});
+
+if (!isProduction) {
+    prisma.$on('query', (e) => {
+        console.log(`\n[PRISMA QUERY LOG]`);
+        console.log('Query\t\t:', e.query);
+        console.log('Params\t\t:', e.params);
+        console.log('Duration\t:', e.duration);
+        console.log('-------------------------');
+    });
+}
+
+export const paginateUser = async (paginate: PaginateQuery, filter?: UserFilterQuery) => {
+
+    const { limit, cursor, search } = paginate;
+
+    const where: any = {};
+
+    // Search Global Query
+    if (search && search?.length > 0) {
+        where.OR = [
+            { firstName: { contains: search as string, mode: 'insensitive' } },
+            { email: { contains: search as string, mode: 'insensitive' } },
+        ]
+    }
+
+    // FilterQuery
+    if (filter?.firstName) {
+        where.firstName = { contains: filter.firstName, mode: "insensitive" };
+    }
+
+    if (cursor) {
+        where.id = {
+            gt: cursor
+        }
+    }
+
+    const results = await prisma.user.findMany({
+        where,
+        take: parseInt(`${limit}`),
         orderBy: { id: `asc` }
     });
 
-    return results.map((row) => ({
+    // Hide some field before send it as response
+    const formatted = results.map((row) => ({
         id: row.id,
         firstName: row.firstName,
         email: row.email,
         createdAt: row.createdAt,
-    }));
+    }))
+
+    return {
+        paginate: formatted,
+        meta: {
+            nextCursor: results[results?.length - 1]?.id,
+            limit: parseInt(`${paginate.limit}`),
+            useOffset: false,
+        }
+    }
 }
 
 export const findUserById = (id: string) => {

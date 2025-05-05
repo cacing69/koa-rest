@@ -4,6 +4,8 @@ import { z } from 'zod';
 dotenv.config();
 
 const envSchema = z.object({
+    APP_PORT: z.string(),
+    APP_ENV: z.string(),
     JWT_SECRET: z.string().min(32, 'JWT_SECRET harus minimal 32 karakter'),
     DATABASE_PROVIDER: z.string().default('postgresql'),
     DATABASE_USERNAME: z.string(),
