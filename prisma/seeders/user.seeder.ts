@@ -4,6 +4,8 @@ import { faker } from '@faker-js/faker';
 const prisma = new PrismaClient();
 
 export async function seedUsers() {
+    console.log('Seeding Users...');
+
     const password = "$2b$10$lD759vZ1m04nXUpT2GYhxOAef1uGy6DOKza.EZJFo65bstpb5MD.q"; // password^
     await prisma.user.createMany({
         data: [
