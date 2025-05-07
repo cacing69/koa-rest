@@ -10,7 +10,7 @@
     "migrate:deploy": "npx prisma migrate deploy",
     "migrate:status": "npx prisma migrate status",
     "migrate:reset": "npx prisma migrate reset",
-    "schema:forma": "npx prisma format",
+    "schema:format": "npx prisma format",
     "db:push": "npx prisma db push",
     "build": "tsc",
     "start": "node dist/index.js",
