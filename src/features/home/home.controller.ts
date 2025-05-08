@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import { errorResponse, successResponse } from '../../shared/utils/response.util';
+import { errorResponse, successResponse } from '@shared/utils/response.util';
 
 export const handleHome = async (ctx: Context) => {
     try {

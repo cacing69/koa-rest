@@ -7,9 +7,9 @@ import path from 'path';
 import serve from 'koa-static';
 import swaggerMiddleware from "./shared/middlewares/swagger.middleware";
 
-import authRouter from "./features/auth/auth.router";
-import testRouter from './features/test/test.router';
-import userRouter from "./features/user/user.router";
+import authRouter from "@features/auth/infrastructures/http/auth.router";
+import testRouter from '@features/test/infrastructures/http/test.router';
+import userRouter from "@features/user/infrastructures/http/user.router";
 
 const app = new Koa();
 

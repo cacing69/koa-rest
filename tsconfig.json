@@ -11,6 +11,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "typeRoots": ["./node_modules/@types", "src/types"],
+    "baseUrl": "./src",
+    "paths": {
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@configs/*": ["configs/*"],
+      "@docs/*": ["docs/*"],
+    }
   },
   "include": ["src/**/*"]
 }

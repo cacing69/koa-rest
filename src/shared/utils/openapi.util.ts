@@ -1,10 +1,10 @@
 import convertToOpenApiSchema from "zod-to-json-schema";
-import { authTokenValidation } from "../validations/auth-token.validation";
-import { authTokenResponseZod } from "../../features/auth/responses/auth-token.response";
-import { errorResponseZod } from "../responses/error.response";
-import { successResponseZod } from "../responses/success.response";
-import { testPublicResponseZod } from "../../features/test/responses/test-public.response";
-import { userCreateValidation } from '../validations/user-create.validation';
+import { authTokenPayload } from "@features/auth/application/payloads/auth-token.payload";
+import { authTokenResponseZod } from "@features/auth/infrastructures/http/responses/auth-token.response";
+import { errorResponseZod } from "@shared/responses/error.response";
+import { successResponseZod } from "@shared/responses/success.response";
+import { testPublicResponseZod } from "@features/test/infrastructures/http/responses/test-public.response";
+import { userCreatePayload } from '@features/user/application/payloads/user-create.payload';
 
 export const openapiComponents = {
     components: {
@@ -24,8 +24,8 @@ export const openapiComponents = {
         },
         requestBodies: {
             // Validation
-            AuthTokenValidation: convertToOpenApiSchema(authTokenValidation),
-            UserCreateValidation: convertToOpenApiSchema(userCreateValidation),
+            AuthTokenPayload: convertToOpenApiSchema(authTokenPayload),
+            UserCreatePayload: convertToOpenApiSchema(userCreatePayload),
         }
     },
 };
