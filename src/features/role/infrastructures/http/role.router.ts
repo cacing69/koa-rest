@@ -1,23 +1,23 @@
 import Router from 'koa-router';
 import { auth } from '@shared/middlewares/auth.middleware';
 import {
-    handlePaginate{PASCAL_NAME},
-    handleGet{PASCAL_NAME}ById,
-    handleUpdate{PASCAL_NAME}ById,
-    handleDelete{PASCAL_NAME}ById
-} from '@features/{FEATURE_NAME}/infrastructures/http/controllers/{FEATURE_NAME}.controller';
+    handlePaginateRole,
+    handleGetRoleById,
+    handleUpdateRoleById,
+    handleDeleteRoleById
+} from '@features/role/infrastructures/http/controllers/role.controller';
 
-const {CAMEL_NAME}Router = new Router({ prefix: '/{FEATURE_NAME}' });
+const roleRouter = new Router({ prefix: '/role' });
 
 /**
  * @openapi
- * /{FEATURE_NAME}:
+ * /role:
  *   get:
- *     summary: Get All {NORMAL_NAME}
+ *     summary: Get All Role
  *     security:
  *       - bearerAuth: []
  *     tags:
- *       - {NORMAL_NAME}
+ *       - Role
  *     responses:
  *      200:
  *        $ref: '#/components/responses/SuccessResponse'
@@ -30,17 +30,17 @@ const {CAMEL_NAME}Router = new Router({ prefix: '/{FEATURE_NAME}' });
  *      500:
  *        $ref: '#/components/responses/InternalError'
  */
-{CAMEL_NAME}Router.get('/{FEATURE_NAME}', auth, handlePaginate{PASCAL_NAME});
+roleRouter.get('/role', auth, handlePaginateRole);
 
 /**
  * @openapi
- * /{FEATURE_NAME}/{id}:
+ * /role/{id}:
  *   get:
- *     summary: Get {NORMAL_NAME} By ID
+ *     summary: Get Role By ID
  *     security:
  *       - bearerAuth: []
  *     tags:
- *       - {NORMAL_NAME}
+ *       - Role
  *     parameters:
  *       - $ref: '#/components/parameters/IdPathParam'
  *     responses:
@@ -59,17 +59,17 @@ const {CAMEL_NAME}Router = new Router({ prefix: '/{FEATURE_NAME}' });
  *      500:
  *        $ref: '#/components/responses/InternalError'
  */
-{CAMEL_NAME}Router.get('/{FEATURE_NAME}/:id', auth, handleGet{PASCAL_NAME}ById);
+roleRouter.get('/role/:id', auth, handleGetRoleById);
 
 /**
  * @openapi
- * /{FEATURE_NAME}/{id}:
+ * /role/{id}:
  *   patch:
- *     summary: Update {NORMAL_NAME} By ID
+ *     summary: Update Role By ID
  *     security:
  *       - bearerAuth: []
  *     tags:
- *       - {NORMAL_NAME}
+ *       - Role
  *     parameters:
  *       - $ref: '#/components/parameters/IdPathParam'
  *     responses:
@@ -88,17 +88,17 @@ const {CAMEL_NAME}Router = new Router({ prefix: '/{FEATURE_NAME}' });
  *      500:
  *        $ref: '#/components/responses/InternalError'
  */
-{CAMEL_NAME}Router.patch('/{FEATURE_NAME}/:id', auth, handleUpdate{PASCAL_NAME}ById);
+roleRouter.patch('/role/:id', auth, handleUpdateRoleById);
 
 /**
  * @openapi
- * /{FEATURE_NAME}/{id}:
+ * /role/{id}:
  *   delete:
- *     summary: Delete {NORMAL_NAME} By ID
+ *     summary: Delete Role By ID
  *     security:
  *       - bearerAuth: []
  *     tags:
- *       - {NORMAL_NAME}
+ *       - Role
  *     parameters:
  *       - $ref: '#/components/parameters/IdPathParam'
  *     responses:
@@ -115,4 +115,4 @@ const {CAMEL_NAME}Router = new Router({ prefix: '/{FEATURE_NAME}' });
  *      500:
  *        $ref: '#/components/responses/InternalError'
  */
-{CAMEL_NAME}Router.delete('/{FEATURE_NAME}/:id', auth, handleDelete{PASCAL_NAME}ById);
+roleRouter.delete('/role/:id', auth, handleDeleteRoleById);

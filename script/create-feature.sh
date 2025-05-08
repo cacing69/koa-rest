@@ -54,8 +54,8 @@ echo "----------------------------------------------------"
 yes | cp -rf "$dir_stubs/"* "$dir_target"
 
 # Creating controller
-stub_controller="$dir_target/controller.stub"
-feat_controller="$dir_target/${input_case}.controller.ts"
+stub_controller="$dir_target/infrastructures/http/controllers/controller.stub"
+feat_controller="$dir_target/infrastructures/http/controllers/${input_case}.controller.ts"
 
 if [ -f "$stub_controller" ]; then
   mv "$stub_controller" "$feat_controller"
@@ -74,8 +74,8 @@ awk -v replacement="$pascal_case" '{gsub(/\{PASCAL_NAME\}/, replacement); print}
 awk -v replacement="$normal" '{gsub(/\{NORMAL_NAME\}/, replacement); print}' "$feat_controller" > temp_file && mv temp_file "$feat_controller"
 
 # Creating route
-stub_router="$dir_target/router.stub"
-feat_router="$dir_target/${input_case}.router.ts"
+stub_router="$dir_target/infrastructures/http/router.stub"
+feat_router="$dir_target/infrastructures/http/${input_case}.router.ts"
 if [ -f "$stub_router" ]; then
   mv "$stub_router" "$feat_router"
   echo "Copying router.stub to ${input_case}.router.ts"
@@ -95,8 +95,8 @@ awk -v replacement="$normal_case" '{gsub(/\{NORMAL_NAME\}/, replacement); print}
 awk -v replacement="$camel_case" '{gsub(/\{CAMEL_NAME\}/, replacement); print}' "$feat_router" > temp_file && mv temp_file "$feat_router"
 
 # Creating response
-stub_response="$dir_target/responses/response.stub"
-feat_response="$dir_target/responses/list-${input_case}.response.ts"
+stub_response="$dir_target/infrastructures/http/responses/response.stub"
+feat_response="$dir_target/infrastructures/http/responses/paginate-${input_case}.response.ts"
 if [ -f "$stub_response" ]; then
   mv "$stub_response" "$feat_response"
   echo "Copying response.stub to responses/${input_case}.response.ts"
